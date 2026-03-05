@@ -1,6 +1,6 @@
 import os, json
 
-METHODS_PATH = os.path.join(os.path.dirname(__file__), 'methods.json')
+METHODS_PATH = os.path.join(os.path.dirname(__file__), 'config.json')
 
 def load_methods():
     with open(METHODS_PATH, 'r') as f:
