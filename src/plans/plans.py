@@ -1,7 +1,7 @@
 import os, json, ipaddress
 from datetime import datetime
 
-PLANS_PATH = os.path.join(os.path.dirname(__file__), 'plans.json')
+PLANS_PATH = os.path.join(os.path.dirname(__file__), 'config.json')
 
 def load_plans():
     try:
@@ -62,7 +62,7 @@ def format_plan_info(plan_name):
     if methods:
         result += "Methods:\n"
         for method in methods:
-            result += f" - {method}\n"
+            result += f"- {method}\n"
     else:
         result += "No methods available for this plan.\n"
         
