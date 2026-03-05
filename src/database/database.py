@@ -59,7 +59,7 @@ def get_user(username):
     users = load_users()
     for u in users:
         if u['username'] == username:
-            # Verificar se o usuário expirou e atualizar plano se necessário
+            # Check if the user has expired and update the plan if necessary
             if 'expires_at' in u:
                 try:
                     expiry_date = datetime.strptime(u['expires_at'], "%d/%m/%Y")
