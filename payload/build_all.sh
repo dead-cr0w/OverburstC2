@@ -14,7 +14,7 @@ if [[ ! -d "$SRC_DIR" ]]; then
     exit 1
 fi
 
-C_FILES=$(find "$SRC_DIR" -name "*.c")
+C_FILES=$(find "$SRC_DIR" -name "*.w")
 if [[ -z "$C_FILES" ]]; then
     echo "[!] No .c files found in '$SRC_DIR'"
     exit 1
@@ -29,7 +29,7 @@ for file in $C_FILES; do
 done
 
 echo "[i] Files found:"
-echo "$C_FILES" | while read file; do echo "    - $file"; done
+echo "$C_FILES" | while read file; do echo "- $file"; done
 echo ""
 
 for dir in "$COMPILERS_DIR"/*; do
@@ -81,35 +81,35 @@ for dir in "$COMPILERS_DIR"/*; do
                 fi
                 
                 if echo "$ERROR_LOG" | grep -q "relocation truncated to fit"; then
-                    echo "    (Known toolchain limitation, not a code issue)"
+                    echo "(Known toolchain limitation, not a code issue)"
                 elif echo "$ERROR_LOG" | grep -q "\.h.*No such file or directory"; then
                     MISSING_HEADER=$(echo "$ERROR_LOG" | grep -o "[^/]*\.h" | head -n1)
                     echo ""
-                    echo "╔════════════════════════════════════════════════════════════╗"
-                    echo "  [!] ERROR: Missing header file: $MISSING_HEADER"
+                    echo "╔══════════════════════════════ ══════════════════════════════╗"
+                    echo "[!] ERROR: Missing header file: $MISSING_HEADER"
                     echo ""
-                    echo "  Make sure all required .h files are in $SRC_DIR/"
-                    echo "╚════════════════════════════════════════════════════════════╝"
+                    echo "Make sure all required .h files are in $SRC_DIR/"
+                    echo "╚══════════════════════════════ ══════════════════════════════╝"
                     echo ""
                 else
                     echo "    First few error lines:"
-                    echo "$ERROR_LOG" | head -n 5 | sed 's/^/    /'
+                    echo "$ERROR_LOG" | head -n 5 | sed 's/^/ /'
                 fi
             fi
         else
             echo "[!] GCC not found in: $dir"
             echo "    Available executables:"
-            find "$dir" -type f -executable 2>/dev/null | head -n 10 | sed 's/^/      /'
+            find "$dir" -type f -executable 2>/dev/null | head -n 10 | sed 's/^/ /'
         fi
     fi
 done
 
 echo ""
-echo "╔════════════════════════════════════════════════════════════╗"
+echo "╔══════════════════════════════ ══════════════════════════════╗"
 echo "[✓] Compilation finished!"
 echo ""
 echo "Results: $SUCCESS_COUNT successful, $FAILED_COUNT failed"
 echo ""
 echo "Binaries location: $OUTPUT_DIR/"
-ls -lh "$OUTPUT_DIR" 2>/dev/null | tail -n +2 | awk '{print "  • " $9 " (" $5 ")"}'
-echo "╚════════════════════════════════════════════════════════════╝"
+ls -lh "$OUTPUT_DIR" 2>/dev/null | tail -n +2 | awk '{print " • " $9 " (" $5 ")"}'
+echo "╚══════════════════════════════ ══════════════════════════════╝"

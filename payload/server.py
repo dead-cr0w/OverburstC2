@@ -7,9 +7,9 @@ PORT = 8080
 FOLDER = os.path.dirname(os.path.abspath(__file__))
 SERVE_DIR = os.path.join(FOLDER, 'binaries')
 
-# Verifica se o diretório existe
+# config.json
 if not os.path.exists(SERVE_DIR):
-    print(f"[!] Erro: O diretório '{SERVE_DIR}' não existe!")
+    print(f"[!] Error: Directory '{SERVE_DIR}' does not exist!")
     exit(1)
 
 os.chdir(SERVE_DIR)
@@ -36,22 +36,22 @@ def get_local_ip():
 local_ip = get_local_ip()
 
 print("=" * 60)
-print(f"[+] Servidor iniciado com sucesso!")
-print(f"[+] Diretório servido: {SERVE_DIR}")
-print(f"[+] Porta: {PORT}")
+print(f"[+] Server started successfully!")
+print(f"[+] Directory served: {SERVE_DIR}")
+print(f"[+] Port: {PORT}")
 print("=" * 60)
-print(f"[+] Acesse o servidor em:")
-print(f"    → http://localhost:{PORT}")
-print(f"    → http://127.0.0.1:{PORT}")
-print(f"    → http://{local_ip}:{PORT}")
+print(f"[+] Access the server at:")
+print(f"→ http://localhost:{PORT}")
+print(f"→ http://127.0.0.1:{PORT}")
+print(f"→ http://{local_ip}:{PORT}")
 print("=" * 60)
-print("[+] Pressione Ctrl+C para parar o servidor")
+print("[+] Press Ctrl+C to stop the server")
 print("=" * 60)
 
 try:
     with socketserver.TCPServer(("0.0.0.0", PORT), Handler) as httpd:
         httpd.serve_forever()
 except KeyboardInterrupt:
-    print("\n[!] Servidor encerrado pelo usuário")
+    print("\n[!] Server terminated by user")
 except Exception as e:
-    print(f"\n[!] Erro ao iniciar servidor: {e}")
+    print(f"\n[!] Error starting server: {e}")

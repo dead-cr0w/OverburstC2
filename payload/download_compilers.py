@@ -3,7 +3,7 @@ import tarfile
 import subprocess
 
 FILES = [
-    "arc_gnu_2017.09_prebuilt_uclibc_le_arc700_linux_install.tar.gz",
+    "config.json",
     "cross-compiler-armv4l.tar.bz2",
     "cross-compiler-armv5l.tar.bz2",
     "cross-compiler-armv6l.tar.bz2",
@@ -32,14 +32,14 @@ def download_file(filename):
     url = f"{BASE_URL}{filename}"
     output_path = os.path.join(DOWNLOAD_DIR, filename)
     if os.path.exists(output_path):
-        print(f"[+] Já existe: {filename}")
+        print(f"[+] Already exists: {filename}")
         return output_path
 
     print(f"[i] Downloading: {filename}")
     cmd = (
-        f'wget --quiet --show-progress --progress=bar:force '
-        f'--referer="{BASE_URL}" '
-        f'--user-agent="Mozilla/5.0" '
+        f'wget --quiet --show-progress --progress=bar:force'
+        f'--referer="{BASE_URL}"'
+        f'--user-agent="Mozilla/5.0"'
         f'-O "{output_path}" "{url}"'
     )
     os.system(cmd)
@@ -49,22 +49,22 @@ def extract_file(file_path):
     file_name = os.path.basename(file_path)
     extract_path = os.path.join(EXTRACT_DIR, file_name.replace(".tar.gz", "").replace(".tar.bz2", ""))
     if os.path.exists(extract_path):
-        print(f"[+] Já extraído: {file_name}")
+        print(f"[+] Already extracted: {file_name}")
         return
 
-    print(f"[i] Extraindo: {file_name}")
+    print(f"[i] Extracting: {file_name}")
     os.makedirs(extract_path, exist_ok=True)
 
     try:
         mode = "r:gz" if file_name.endswith(".tar.gz") else "r:bz2"
         with tarfile.open(file_path, mode) as tar:
             tar.extractall(path=extract_path)
-        print(f"[✓] Extraído em: {extract_path}")
+        print(f"[✓] Extracted from: {extract_path}")
     except Exception as e:
-        print(f"[!] Erro ao extrair {file_name}: {e}")
+        print(f"[!] Error extracting {file_name}: {e}")
 
 def main():
-    print(f"[i] Iniciando download e extração de {len(FILES)} arquivos...")
+    print(f"[i] Starting download and extraction of {len(FILES)} files...")
     for filename in FILES:
         path = download_file(filename)
         if path and (filename.endswith(".tar.gz") or filename.endswith(".tar.bz2")):

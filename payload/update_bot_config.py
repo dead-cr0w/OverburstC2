@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+# config.json
 import json
 import os
 import sys
@@ -20,13 +20,13 @@ try:
     with open(config_h_path, 'r') as f:
         config_h_content = f.read()
     
-    new_line = f'#define BOT_SECRET_B64 "{bot_secret}"\n'
+    new_line = f'# define BOT_SECRET_B64 "{bot_secret}"\n'
     
     if 'BOT_SECRET_B64' in config_h_content:
         lines = config_h_content.split('\n')
         new_lines = []
         for line in lines:
-            if line.strip().startswith('#define BOT_SECRET_B64'):
+            if line.strip().startswith('# define BOT_SECRET_B64'):
                 new_lines.append(new_line.rstrip())
             else:
                 new_lines.append(line)
