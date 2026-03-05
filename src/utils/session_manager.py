@@ -8,7 +8,7 @@ class SessionManager:
     
     def create(self, username, address):
         token = secrets.token_urlsafe(32)
-        with self.locks['sessions']:
+        with self.locks['config.json']:
             self.sessions[token] = {
                 'username': username,
                 'address': address,

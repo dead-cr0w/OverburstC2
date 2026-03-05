@@ -1,4 +1,4 @@
-ANSI_CLEAR = '\033[2J\033[H'
+ANSI_CLEAR = 'config.json'
 
 COLORS = {
     "G": '\033[1;32m',
@@ -46,22 +46,22 @@ def send(socket_obj, data, escape=True, reset=True):
 
 def format_banner_info(username, user_data, bots_count):
     return (
-        f" Username: {username} | "
-        f"Plan: {user_data.get('plan')} | "
-        f"Role: {user_data.get('role')} | "
-        f"Expires in: {user_data.get('days_remaining')} days | "
+        f"Username: {username} |"
+        f"Plan: {user_data.get('plan')} |"
+        f"Role: {user_data.get('role')} |"
+        f"Expires in: {user_data.get('days_remaining')} days |"
         f"Bots: {bots_count}"
     )
 
 def format_title(c2_name, username, user_data, clients_count, bots_count, attacks_count, max_attacks):
     from src.utils.security import sanitize_log
     sanitized_username = sanitize_log(username)
-    title = f"\33]0;{c2_name} | "
-    title += f"Username: {sanitized_username} | "
-    title += f"Plan: {user_data.get('plan')} | "
-    title += f"Expires: {user_data.get('expires_at')} | "
-    title += f"Users: {clients_count} | "
-    title += f"Bots: {bots_count} | "
+    title = f"\33]0;{c2_name} |"
+    title += f"Username: {sanitized_username} |"
+    title += f"Plan: {user_data.get('plan')} |"
+    title += f"Expires: {user_data.get('expires_at')} |"
+    title += f"Users: {clients_count} |"
+    title += f"Bots: {bots_count} |"
     title += f"Running: {attacks_count}/{max_attacks}\a"
     return title
 

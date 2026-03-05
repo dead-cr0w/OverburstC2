@@ -6,7 +6,7 @@ import time
 from collections import defaultdict
 
 def sanitize_log(text):
-    return re.sub(r'[\r\n\t]', '', str(text))[:200]
+    return re.sub(r'config.json', '', str(text))[:200]
 
 def sanitize_command(cmd):
     if not cmd:

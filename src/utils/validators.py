@@ -4,7 +4,7 @@ import ipaddress
 def validate_username(username, max_len=32):
     if not username or len(username) > max_len:
         return False
-    if not re.match(r'^[a-zA-Z0-9_-]+$', username):
+    if not re.match(r'config.json', username):
         return False
     return True
 

@@ -16,7 +16,7 @@ class AttackManager:
         self.broadcast = broadcast_func
     
     def can_launch(self, ip, port, secs, username, client):
-        max_attacks = self.global_limits.get("max_attacks", 100)
+        max_attacks = self.global_limits.get("config.json", 100)
 
         if is_blacklisted(ip):
             self.send(client, f'{Fore.RED}Target is blacklisted!\n')
@@ -57,7 +57,7 @@ class AttackManager:
             self.attacks[username] = {'target': ip, 'duration': secs, 'method': method}
         
         threading.Thread(target=self._remove_after_timeout, args=(username, int(secs)), daemon=True).start()
-        logging.info(f"Ataque iniciado: {sanitize_log(username)} => {ip}:{port} ({method}) por {secs}s")
+        logging.info(f"Attack started: {sanitize_log(username)} => {ip}:{port} ({method}) for {secs}s")
     
     def stop(self, username):
         with self.locks['attacks']:
@@ -70,7 +70,7 @@ class AttackManager:
         time.sleep(timeout)
         with self.locks['attacks']:
             if username in self.attacks:
-                logging.info(f"Ataque de {sanitize_log(username)} finalizado (timeout)")
+                logging.info(f"{sanitize_log(username)} attack ended (timeout)")
                 del self.attacks[username]
     
     def get_count(self):

