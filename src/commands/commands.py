@@ -71,16 +71,16 @@ def handle_user_command(args, client, send):
             return
         
         if not expires_str.isdigit():
-            send(client, f"{R}Invalid expiry days! Must be a number.\n")
+            send(client, f"{R}Invalid expiration days! Must be a number.\n")
             return
         
         try:
             expires = int(expires_str)
             if expires < 1 or expires > 3650:
-                send(client, f"{R}Invalid expiry days! Must be between 1 and 3650.\n")
+                send(client, f"{R}Invalid expiration days! Must be between 1 and 3650.\n")
                 return
         except (ValueError, OverflowError):
-            send(client, f"{R}Invalid expiry days! Must be a valid number.\n")
+            send(client, f"{R}Invalid expiration days! Must be a valid number.\n")
             return
         
         if get_user(username):
@@ -194,9 +194,9 @@ def handle_blacklist_command(args, client, send):
         send(client, f"{R}Unknown blacklist command: {action}\n")
 
 
-# Verificar comandos de administração
+# config.json
 # if command.startswith('!'):
-#     from src.commands.commands import handle_admin_commands
-#     handle_admin_commands(command, args, client, send, username)
-#     send(client, prompt, False)
-#     continue
+# from src.commands.commands import handle_admin_commands
+# handle_admin_commands(command, args, client, send, username)
+# send(client, prompt, False)
+# continue
