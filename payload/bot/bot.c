@@ -229,7 +229,7 @@ void handle_command(int sock, char *buffer) {
     }
 
     if (strcmp(command, "stop") == 0) {
-        token = strtok(NULL, " \n\r");
+        token = strtok(NULL, "\n\r");
         if (token != NULL) {
             strncpy(username, token, sizeof(username) - 1);
             username[strcspn(username, "\n")] = 0;
@@ -270,7 +270,7 @@ void handle_command(int sock, char *buffer) {
     }
     threads = atoi(token);
 
-    token = strtok(NULL, " \n\r");
+    token = strtok(NULL, "\n\r");
     if (token != NULL) {
         strncpy(username, token, sizeof(username) - 1);
         username[strcspn(username, "\n")] = 0;
